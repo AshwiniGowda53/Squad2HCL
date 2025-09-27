@@ -1,9 +1,9 @@
-
+import TableComponent from "./components/Table/Table";
 
 function App() {
   return (
     <div className="App">
-     Hello
+      <TableComponent />
     </div>
   );
 }
