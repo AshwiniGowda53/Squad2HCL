@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import {Table} from 'antd';
 import { fetchCustomerData } from '../../services';
+import '../../index.css';
 
 const TableComponent = () => {
     const columns = [
         {
             title: 'Name',
             dataIndex: 'name',
-            key: 'name'
+            key: 'name',
+            sorter: true, 
+            sortDirections: ['descend'],
         },
         {
             title: 'Email',
@@ -19,20 +22,31 @@ const TableComponent = () => {
             dataIndex: 'phone',
             key: 'phone'
         },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address'
+        },
     ]
     const [users, setUsers] = useState([]);
+    const [isError, setError] = useState(false);
     const fetchData = async () => {
         try {
             const usersData = await fetchCustomerData();
-            setUsers(usersData.data)
+            const parsedData = usersData.data.map((item) => (
+                {...item, address: item.address.suite + ' ' + item.address.street + ' ' + item.address.city}))
+            setUsers(parsedData)
         } catch(e) {
             console.error(e)
+            setError(true);
         }
     }
 
     useEffect(() => {
         fetchData()
     }, [])
+
+    if(isError) return <div className='no-data'>No data</div>
 
     return <div>{users.length > 0 && <Table dataSource={users} columns={columns}/>}</div>
 }
