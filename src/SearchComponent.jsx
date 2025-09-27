@@ -9,12 +9,6 @@ const SearchComponent = () => {
   const [filters, setFilters] = useState({
     "Churn Risk": "",
     "Churn Risk_options": ["High", "Medium", "Low"],
-    "Segment": "",
-    "Segment_options": [
-      "High Value - At Risk",
-      "Loyal - Engaged",
-      "Moderate - Needs Engagement",
-    ],
     "Location": "",
     "Location_options": ["Bangalore, India", "Kolkata, India", "Delhi, India"],
   });
