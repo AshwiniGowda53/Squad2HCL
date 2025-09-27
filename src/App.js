@@ -1,4 +1,4 @@
-import Customer360Form from "./Customer360Form";
+import TableComponent from "./components/Table/Table";import Customer360Form from "./Customer360Form";
 import Main from "./Main";
 
 
